@@ -30,8 +30,10 @@ public class Program {
 				//}
 			//}
 
+			System.out.println("K-Means Clusters");
 			// Clustering K - MEANS on Age 
 			ArrayList<Cluster> clusters = KMeans.run(cleanedTuples, 3);
+
 
 			for(Cluster c : clusters) {
 				System.out.println("Cluster: "+c.Id);
@@ -41,6 +43,18 @@ public class Program {
 				System.out.println("\n");
 			}
 
+			System.out.println("K-Medoid Clusters");
+			// Clustering K - Medoids on Age 
+			KMedoids km = new KMedoids(3, 100);
+			ArrayList<Cluster> mediodClusters = km.run(cleanedTuples);
+
+			for(Cluster c : mediodClusters) {
+				System.out.println("Cluster: "+c.Id);
+				for(Point p : c.points) {
+					System.out.print("{"+p.X + ","+p.Y+"}, ");
+				}
+				System.out.println("\n");
+			}
 			// Frequent Pattern Mining Apriori on Programming Langs
 			Apriori.run();
 
